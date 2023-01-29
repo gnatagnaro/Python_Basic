@@ -5,12 +5,14 @@ def sum_cyph(n):
         n //= 10
     return summ
 
+
 def count_cyph(n):
     count = 0
     while n > 0:
         count += 1
         n //= 10
     return count
+
 
 num = int(input('Введите число: '))
 x = sum_cyph(num)

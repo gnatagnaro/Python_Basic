@@ -4,6 +4,7 @@ def reverse_num(y):
         num += y[i]
     return num
 
+
 def split_num(x):
     s = str(x).split('.')
     a = str(s[0])
@@ -15,6 +16,7 @@ def split_num(x):
         print(f'{j} число наоборот: {e}')
     else:
         return e
+
 
 n = float(input('Введите первое вещественное число: '))
 m = float(input('Введите второе вещественное число: '))

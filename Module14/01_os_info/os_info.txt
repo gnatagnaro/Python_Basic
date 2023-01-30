@@ -1,0 +1,4 @@
+OS info is 
+uname_result(system='Windows', node='orangatang', release='10', version='10.0.22000', machine='AMD64')
+
+Python version is 3.11.1 (tags/v3.11.1:a7a450f, Dec  6 2022, 19:58:39) [MSC v.1934 64 bit (AMD64)] ('64bit', 'WindowsPE')

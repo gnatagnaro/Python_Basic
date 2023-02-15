@@ -23,5 +23,35 @@ store = {
         {'quantity': 43, 'price': 97},
     ],
 }
+#
+# for el in store.keys():
+#     print(store[el][0]['quantity'])
+count = 0
+summ = 0
 
-# TODO здесь писать код
+for i in goods:
+    for j in store:
+        if goods[i] == j:
+            for t in store[j]:
+                count += t['quantity']
+                summ += t['quantity'] * t['price']
+            if summ >= 10000:
+                print('{0} - {1:,} штук, стоимость {2:,d} рублей'.format(i, count, summ).replace(',', ' '))
+            else:
+                print('{0} - {1:} штук, стоимость {2:d} рублей'.format(i, count, summ))
+
+            count = 0
+            summ = 0
+
+# более логичный вариант с кортежами
+# for product_name, product_code in goods.items():
+#     item_total_quantity = 0
+#     item_total_cost = 0
+#     for product in store[product_code]:
+#         item_quantity = product['quantity']
+#         item_cost = product['price']
+#         item_total_cost += item_quantity * item_cost
+#         item_total_quantity += item_quantity
+#     print('{0} - {1} шт, общая стоимость {2} рублей'.format(product_name, item_total_quantity, item_total_cost))
+
+

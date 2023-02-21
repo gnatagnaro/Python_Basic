@@ -1,7 +1,3 @@
-# мне кажется, что выводить сайт единожды будет логичнее, поэтому под каждым названием
-# выводятся только его данные, а еще не перебираю циклом ключи/значения, так как
-# вывод в строку выглядит не так громоздко
-
 site = {
     'html': {
         'head': {
@@ -28,6 +24,7 @@ def find_key(struct, key, meaning):
                 return site
 
 
+all_sites = dict()
 number_sites = int(input('Сколько сайтов: '))
 for _ in range(number_sites):
     product_name = input('Введите название продукта для нового сайта: ')
@@ -35,5 +32,9 @@ for _ in range(number_sites):
     for i in key:
         find_key(site, i, key[i])
 
-    print(f'Сайт для {product_name}:')
-    print(site, '\n')
+    # print(f'Сайт для {product_name}:')
+    all_sites[f'Сайт для {product_name}:'] = site
+    for i, j in all_sites.items():
+        print(i, end=' ')
+        print('\n\tsite =', j)
+    # print(all_sites, '\n')

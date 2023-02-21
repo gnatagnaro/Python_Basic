@@ -1,6 +1,6 @@
 # не очень понятно условие задания.. реализовал, как понял
 
-def calculating_math_func(data):
+def calculating_math_func(data, dict):
     if data in factorials:  # если факториал в словаре - result = его значению
         result = factorials[data]
     else:
@@ -15,6 +15,9 @@ def calculating_math_func(data):
 
 factorials = {}  # словарь всех найденных факториалов
 #
-# print(calculating_math_func(3))
-# print(calculating_math_func(3))
-# print(calculating_math_func(3))
+# print(calculating_math_func(3, factorials))
+# print(factorials)
+# print(calculating_math_func(3, factorials))
+# print(factorials)
+# print(calculating_math_func(3, factorials))
+# print(factorials)

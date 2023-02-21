@@ -1,7 +1,3 @@
-# видоизменил функцию нахождения суммы, и все работает по той же логике, но уже со списком
-# подскажите, пожалуйста, как еще можно было реализовать эту и предыдущую задачи?
-# возможно, кто-то предлагал более логичные/быстрые/короткие варианты?
-
 def sum(*args):
     if not any(type(arg) == list for arg in args):
         result = list()
@@ -21,3 +17,12 @@ nice_list = [1, 2, [3, 4], [[5, 6, 7], [8, 9, 10]],
              [[11, 12, 13], [14, 15], [16, 17, 18]]]
 
 # print(sum(nice_list))
+#
+# def flatten(a_list):
+#     result = []
+#     for e in a_list:
+#         if isinstance(e, int):
+#             result.append(e)
+#         else:
+#             result.extend(flatten(e))
+#     return result

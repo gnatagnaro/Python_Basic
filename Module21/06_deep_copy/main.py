@@ -32,9 +32,7 @@ for _ in range(number_sites):
     for i in key:
         find_key(site, i, key[i])
 
-    # print(f'Сайт для {product_name}:')
-    all_sites[f'Сайт для {product_name}:'] = site
+    all_sites[f'Сайт для {product_name}:'] = key
     for i, j in all_sites.items():
         print(i, end=' ')
         print('\n\tsite =', j)
-    # print(all_sites, '\n')

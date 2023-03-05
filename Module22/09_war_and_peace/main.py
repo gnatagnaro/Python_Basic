@@ -48,3 +48,19 @@ file_name = 'voyna-i-mir.zip'
 stats = collect_stats(file_name)
 stats = sort_by_frequency(stats)
 print_stats(stats)
+
+#
+# import zipfile
+# from collections import Counter
+#
+# # считываем содержимое файла не распаковывая его
+# with zipfile.ZipFile('voyna-i-mir.zip', 'r') as zf:
+#     with zf.open(zf.namelist()[0]) as f:
+#         text = f.read().decode('utf-8')
+# # отфильтровываем буквы
+# text_filtered = [c for c in text if c.isalpha()]
+# # с помощью класса Counter считаем буквы
+# count = Counter(text_filtered)
+# # методом most_common сортируем результат по частоте и выводим его
+# for sym, value in count.most_common():
+#     print(f'{sym}:{value}')

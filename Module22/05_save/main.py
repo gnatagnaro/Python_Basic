@@ -4,6 +4,10 @@
 import os
 
 
+def root_path():
+    return os.path.abspath(os.sep)
+
+
 def save():
     text = input('Введите строку: ')
     print()

@@ -50,3 +50,25 @@ my_file_2.close()
 # my_file_1.close()
 # my_file_2.close()
 #
+
+# def caesar_cipher(string, num):
+#     alphabet_en = 'abcdefghijklmnopqrstuvwxyz'
+#     alphabet_ru = 'абвгдежзиклмнопрстуфхцчшщъыьэюя'
+#     my_list = [(alphabet_en[(alphabet_en.index(i.lower()) + num) % len(alphabet_en)]
+#                 if i in alphabet_en or i in alphabet_en.upper() else
+#                 alphabet_ru[(alphabet_ru.index(i.lower()) + num) % len(alphabet_ru)]
+#                 if i in alphabet_ru or i in alphabet_ru.upper() else ' ') for i in string]
+#     my_str = ''
+#
+#     for count, j in enumerate(my_list):
+#         if string[count].isupper():
+#             my_str += j.upper()
+#         else:
+#             my_str += j
+#     return my_str
+#
+#
+# with open('text.txt', 'r', encoding='utf-8') as my_file_1, \
+#      open('cipher_text.txt', 'w', encoding='utf-8') as my_file_2:
+#     for shift, i_str in enumerate(my_file_1):
+#         my_file_2.write(caesar_cipher(i_str, shift + 1) + '\n')

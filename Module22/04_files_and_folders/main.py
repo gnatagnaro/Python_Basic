@@ -32,3 +32,31 @@ else:
     print('Количество подкаталогов:', all_paths[1])
     print('Количество файлов:', all_paths[2])
 
+# import os
+#
+#
+# def calculate_size_and_counts(path):
+#     total_size_kb = 0
+#     num_subdirs = 0
+#     num_files = 0
+#
+#     for root, dirs, files in os.walk(path):
+#         for file in files:
+#             file_path = os.path.join(root, file)
+#             total_size_kb += os.path.getsize(file_path) / 1024
+#             num_files += 1
+#         num_subdirs += len(dirs)
+#
+#     return (total_size_kb, num_subdirs, num_files)
+#
+#
+# pth = os.path.abspath(os.path.join('..', '..', 'Module14'))
+#
+# if os.path.exists(pth):
+#     all_paths = calculate_size_and_counts(pth)
+#     print(pth)
+#     print('Размер каталога (в Кб):', all_paths[0])
+#     print('Количество подкаталогов:', all_paths[1])
+#     print('Количество файлов:', all_paths[2])
+# else:
+#     print('Данного пути не существует!')

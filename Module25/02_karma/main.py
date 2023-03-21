@@ -44,22 +44,7 @@ with open('karma.log', 'w', encoding='utf-8') as file:
     while True:
         try:
             summ += one_day()
-            if summ == 500:
+            if summ >= 500:
                 break
         except (KillError, DrunkError, CarCrashError, GluttonyError, DepressionError) as exc:
-            file.write(exc + '' + type(exc))
-
-
-class DivisionError(Exception):
-    pass
-
-
-with open("numbers.txt", "r", encoding="utf8") as file:
-    for line in file:
-        try:
-            clear_line = line.rstrip()
-            first, second = clear_line.split()
-            if int(first) < int(second):
-                raise DivisionError("нельзя делить большее на меньшее")
-        except (ValueError, DivisionError) as exc:
-            print(exc, type(exc), first, second)
+            file.write(str(exc) + ' ' + str(type(exc)) + '\n')

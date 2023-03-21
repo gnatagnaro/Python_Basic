@@ -60,7 +60,7 @@ class Hero:
         self.set_power(self.get_power() + 0.1)
 
     def __str__(self):
-        pass
+        return 'Name: {0} | HP: {1}'.format(self.name, self.get_hp())
 
 
 class Healer(Hero):
@@ -73,6 +73,40 @@ class Healer(Hero):
     # - исцеление - увеличивает здоровье цели на величину равную своей магической силе
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # исцеление) на выбранную им цель
+
+    def __init__(self, name):
+        super().__init__(name)
+        self.magic_power = self.get_power() * 3
+
+    def attack(self, target):
+        target.take_damage(self.get_power() / 2)
+
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - 1.2 * damage)
+        super().take_damage(damage)
+
+    def heal(self, target):
+        target.set_hp(target.get_hp() + self.magic_power)
+
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        target_of_heal = friends[0]
+        min_health = target_of_heal.get_hp()
+        for friend in friends:
+            if friend.get_hp() < min_health:
+                target_of_heal = friend
+                min_health = target_of_heal.get_hp()
+
+        if min_health < 70:
+            print("Исцеляю", target_of_heal.name)
+            self.heal(target_of_heal)
+        else:
+            if not enemies:
+                return
+            print("Атакую ближнего -", enemies[0].name)
+            self.attack(enemies[0])
+        print('\n')
+        super().make_a_move(friends, enemies)
 
 
 class Tank(Hero):
@@ -88,6 +122,46 @@ class Tank(Hero):
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # поднять щит/опустить щит) на выбранную им цель
 
+    def __init__(self, name, defense=1, is_shield_up=False):
+        super().__init__(name)
+        self.defense = defense
+        self.is_shield_up = is_shield_up
+
+    def attack(self, target):
+        target.take_damage(self.get_power() / 2)
+
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - (damage / self.defense))
+        super().take_damage(damage)
+
+    def raise_shield(self):
+        if not self.is_shield_up:
+            self.is_shield_up = True
+            self.defense *= 2
+            self.set_power(self.get_power() / 2)
+
+    def lower_shield(self):
+        if self.is_shield_up:
+            self.is_shield_up = False
+            self.defense /= 2
+            self.set_power(self.get_power() * 2)
+
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        if not enemies:
+            return
+        if self.get_hp() < 100:
+            print("Поднимаю щит!")
+            self.raise_shield()
+        elif 100 < self.get_hp() < 130:
+            print("Опускаю щит!")
+            self.lower_shield()
+        else:
+            print("Атакую того, кто стоит ближе -", enemies[0].name)
+            self.attack(enemies[0])
+        print('\n')
+        super().make_a_move(friends, enemies)
+
 
 class Attacker(Hero):
     # Убийца:
@@ -102,3 +176,37 @@ class Attacker(Hero):
     # - ослабление (power_down) - уменьшает коэффициента усиления урона в 2 раза
     # - выбор действия - получает на вход всех союзников и всех врагов и на основе своей стратегии выполняет ОДНО из действий (атака,
     # усиление, ослабление) на выбранную им цель
+
+    def __init__(self, name, power_multiply=1):
+        super().__init__(name)
+        self.power_multiply = power_multiply
+
+    def attack(self, target):
+        target.take_damage(self.get_power() * self.power_multiply)
+        self.power_down()
+
+    def take_damage(self, damage):
+        self.set_hp(self.get_hp() - (damage * (self.power_multiply / 2)))
+        super().take_damage(damage)
+
+    def power_up(self):
+        self.power_multiply *= 2
+
+    def power_down(self):
+        self.power_multiply /= 2
+
+    def make_a_move(self, friends, enemies):
+        print(self.name, end=' ')
+        if self.power_multiply < 2:
+            print('Усиление:', self.power_multiply)
+            self.power_up()
+        elif self.power_multiply > 10:
+            print('Ослабление:', self.power_multiply)
+            self.power_down()
+        else:
+            print("Атакую того, кто стоит ближе -", enemies[0].name)
+            self.attack(enemies[0])
+        print('\n')
+        super().make_a_move(friends, enemies)
+
+

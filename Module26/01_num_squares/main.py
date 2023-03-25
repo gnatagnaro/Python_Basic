@@ -1,5 +1,5 @@
 from collections.abc import Iterable
-from typing import Optional
+from typing import Iterator
 
 
 n = int(input('Введите число N: '))
@@ -12,7 +12,7 @@ class Squares:
         self.count = count
         self.start = 1
 
-    def __iter__(self):  # какую аннотацию здесь нужно написать?
+    def __iter__(self) -> Iterator[int]:  # какую аннотацию здесь нужно написать?
         return self
 
     def __next__(self) -> int:

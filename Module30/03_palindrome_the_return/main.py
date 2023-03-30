@@ -1,4 +1,4 @@
-from collections import *
+from collections import Counter
 
 
 if __name__ == '__main__':
